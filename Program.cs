@@ -30,6 +30,47 @@ namespace G_NET_26_C__5
             area = Math.PI * redius * redius;
             circumference = 2 * Math.PI * redius;
         }
+
+        static Grade GetGrade(int score)
+        {
+            if (score >= 90)
+                return Grade.A;
+            if (score >= 80)
+                return Grade.B;
+            if (score >= 70)
+                return Grade.C;
+            if (score >= 60)
+                return Grade.D;
+            else 
+                return Grade.F;
+        }
+
+        static double CalculateAverage(int[] array)
+        {
+            double sum = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                sum += array[i];
+            }
+            return sum / array.Length;
+        }
+
+        static void GetMinMax (int[] array , out int max , out int min)
+        {
+            max = int.MinValue;
+            min = int.MaxValue ;
+            for (int i = 0; i < array.Length; i++)
+            { 
+                if(array[i] < min)
+                {
+                    min = array[i];
+                }
+                if (array[i] > max)
+                {
+                    max = array[i];
+                }
+            }
+        }
         static void Main(string[] args)
         {
             #region Q1
@@ -155,17 +196,43 @@ namespace G_NET_26_C__5
 
             #endregion
             #region Q5
-            Console.Write("enter the redius : ");
-            bool valid = double.TryParse(Console.ReadLine(), out double redius);
+            //Console.Write("enter the redius : ");
+            //bool valid = double.TryParse(Console.ReadLine(), out double redius);
 
-            if(!valid || redius < 0)
+            //if(!valid || redius < 0)
+            //{
+            //    Console.WriteLine("invalid redius!!");
+            //    return;
+            //}
+            //double area, circumference;
+            //CalculateCircle(redius, out area, out circumference);
+            //Console.WriteLine($"the area = {area:F2}\nthe circumference = {circumference:F2}");
+
+            #endregion
+            #region Q6
+            int[] array = new int[5];
+            for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine("invalid redius!!");
-                return;
+                Console.Write($"Enter score for student {i +1}: ");
+                bool vaild = int.TryParse(Console.ReadLine(), out array[i]);
+                if(!vaild || array[i] < 0)
+                {
+                    Console.WriteLine("invalid score!!");
+                    return;
+                }
             }
-            double area, circumference;
-            CalculateCircle(redius, out area, out circumference);
-            Console.WriteLine($"the area = {area:F2}\nthe circumference = {circumference:F2}");
+            Console.WriteLine("\n--- Report ---");
+
+            for (int i = 0; i < 5; i++)
+            {
+                Grade g = GetGrade(array[i]);
+
+                Console.WriteLine($"Student {i +1}: {array[i]} -> Grade: {g}");
+            }
+            GetMinMax(array , out int max ,out int min);
+            Console.WriteLine($"\nAverage: {CalculateAverage(array)}");
+            Console.WriteLine($"Highest Score: {max}");
+            Console.WriteLine($"Lowest Score: {min}");
 
             #endregion
         }

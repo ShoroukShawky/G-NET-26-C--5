@@ -16,4 +16,9 @@ namespace G_NET_26_C__5.Enums
         Thursday = 6,
         Friday = 7,
     }
+
+    internal enum Grade
+    {
+        A, B, C, D, F
+    }
 }
