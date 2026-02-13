@@ -4,6 +4,25 @@ namespace G_NET_26_C__5
 {
     internal class Program
     {
+
+        static double Add(double a, double b)
+        { return a + b; }
+
+        static double Subtract(double a, double b)
+        { return a - b; }
+
+        static double Multiply(double a, double b)
+        { return a * b; }
+
+        static double Divide(double a, double b)
+        {
+            if (b == 0)
+            {
+                Console.WriteLine("cannot divide by zero !!");
+                return 0;
+            }
+            return a / b;
+        }
         static void Main(string[] args)
         {
             #region Q1
@@ -66,31 +85,67 @@ namespace G_NET_26_C__5
             // }
             #endregion
             #region Q3
-            double[,] gradsArray = new double[3, 4];
-            double classSum = 0;
+            //double[,] gradsArray = new double[3, 4];
+            //double classSum = 0;
 
-            for (int i = 0; i < 3; i++)
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    Console.WriteLine($"enter grades for student {i+1}: ");
+            //    double stuSum = 0;
+            //      for (int j = 0; j < 4; j++)
+            //    {
+            //        bool valid = double.TryParse(Console.ReadLine(), out gradsArray[i, j]);
+            //        if (!valid)
+            //        {
+            //            Console.WriteLine("invalid grade");
+            //            return;
+            //        }
+
+
+            //        stuSum += gradsArray[i, j];
+            //    }
+            //    double stuAvg = stuSum / 4;
+            //    Console.WriteLine($"student {i+1} average grades = {stuAvg}");
+            //    classSum += stuSum;
+            //}
+            //double classAvg = classSum / 12;
+            //Console.WriteLine($"class average grades = {classAvg}");
+            #endregion
+            #region Q4
+            Console.WriteLine("enter two numbers:");
+           bool v1 = double.TryParse(Console.ReadLine(), out double a);
+           bool v2 = double.TryParse(Console.ReadLine(), out double b);
+            if(!v1 || !v2)
             {
-                Console.WriteLine($"enter grades for student {i+1}: ");
-                double stuSum = 0;
-                  for (int j = 0; j < 4; j++)
-                {
-                    bool valid = double.TryParse(Console.ReadLine(), out gradsArray[i, j]);
-                    if (!valid)
-                    {
-                        Console.WriteLine("invalid grade");
-                        return;
-                    }
-
-                    
-                    stuSum += gradsArray[i, j];
-                }
-                double stuAvg = stuSum / 4;
-                Console.WriteLine($"student {i+1} average grades = {stuAvg}");
-                classSum += stuSum;
+                Console.WriteLine("invalid number");
+                return;
             }
-            double classAvg = classSum / 12;
-            Console.WriteLine($"class average grades = {classAvg}");
+
+            Console.WriteLine("enter opration (+ , - , * , /)");
+            char opration = Console.ReadLine()[0];
+            switch (opration)
+            {
+                case '+':
+                    Console.WriteLine($"result = {Add(a, b)}");
+                    break;
+
+                case '-':
+                    Console.WriteLine($"result = {Subtract(a, b)}");
+                    break;
+
+                case '*':
+                    Console.WriteLine($"result = {Multiply(a, b)}");
+                    break;
+
+                case '/':
+                    Console.WriteLine($"result = {Divide(a, b)}");
+                    break;
+
+              default:
+                    Console.WriteLine("invaild opration!!");
+                    break;
+            }
+
             #endregion
         }
     }
