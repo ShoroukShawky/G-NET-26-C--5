@@ -23,6 +23,13 @@ namespace G_NET_26_C__5
             }
             return a / b;
         }
+
+        
+        static void CalculateCircle (double redius , out double area , out double circumference)
+        {
+            area = Math.PI * redius * redius;
+            circumference = 2 * Math.PI * redius;
+        }
         static void Main(string[] args)
         {
             #region Q1
@@ -112,39 +119,53 @@ namespace G_NET_26_C__5
             //Console.WriteLine($"class average grades = {classAvg}");
             #endregion
             #region Q4
-            Console.WriteLine("enter two numbers:");
-           bool v1 = double.TryParse(Console.ReadLine(), out double a);
-           bool v2 = double.TryParse(Console.ReadLine(), out double b);
-            if(!v1 || !v2)
+            // Console.WriteLine("enter two numbers:");
+            //bool v1 = double.TryParse(Console.ReadLine(), out double a);
+            //bool v2 = double.TryParse(Console.ReadLine(), out double b);
+            // if(!v1 || !v2)
+            // {
+            //     Console.WriteLine("invalid number");
+            //     return;
+            // }
+
+            // Console.WriteLine("enter opration (+ , - , * , /)");
+            // char opration = Console.ReadLine()[0];
+            // switch (opration)
+            // {
+            //     case '+':
+            //         Console.WriteLine($"result = {Add(a, b)}");
+            //         break;
+
+            //     case '-':
+            //         Console.WriteLine($"result = {Subtract(a, b)}");
+            //         break;
+
+            //     case '*':
+            //         Console.WriteLine($"result = {Multiply(a, b)}");
+            //         break;
+
+            //     case '/':
+            //         Console.WriteLine($"result = {Divide(a, b)}");
+            //         break;
+
+            //   default:
+            //         Console.WriteLine("invaild opration!!");
+            //         break;
+            // }
+
+            #endregion
+            #region Q5
+            Console.Write("enter the redius : ");
+            bool valid = double.TryParse(Console.ReadLine(), out double redius);
+
+            if(!valid || redius < 0)
             {
-                Console.WriteLine("invalid number");
+                Console.WriteLine("invalid redius!!");
                 return;
             }
-
-            Console.WriteLine("enter opration (+ , - , * , /)");
-            char opration = Console.ReadLine()[0];
-            switch (opration)
-            {
-                case '+':
-                    Console.WriteLine($"result = {Add(a, b)}");
-                    break;
-
-                case '-':
-                    Console.WriteLine($"result = {Subtract(a, b)}");
-                    break;
-
-                case '*':
-                    Console.WriteLine($"result = {Multiply(a, b)}");
-                    break;
-
-                case '/':
-                    Console.WriteLine($"result = {Divide(a, b)}");
-                    break;
-
-              default:
-                    Console.WriteLine("invaild opration!!");
-                    break;
-            }
+            double area, circumference;
+            CalculateCircle(redius, out area, out circumference);
+            Console.WriteLine($"the area = {area:F2}\nthe circumference = {circumference:F2}");
 
             #endregion
         }
